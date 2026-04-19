@@ -17,8 +17,8 @@ function App() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-8 pt-20 pb-28 lg:pb-40">
           {/* Hero content */}
           <div className="flex flex-col lg:flex-row items-center justify-center gap-14 lg:gap-16">
-            {/* Left – phone mockup */}
-            <div className="relative flex-shrink-0 w-72 sm:w-80 lg:w-[26rem]">
+            {/* Left – phone mockup (below text on mobile, left on desktop) */}
+            <div className="relative flex-shrink-0 w-72 sm:w-80 lg:w-[26rem] order-2 lg:order-1">
               <div className="relative z-10">
                 <img
                   src="/Add_a_subheading-removebg-preview.png"
@@ -31,7 +31,7 @@ function App() {
             </div>
 
             {/* Right – copy */}
-            <div className="text-center lg:text-left max-w-xl w-full px-2 sm:px-0">
+            <div className="text-center lg:text-left max-w-xl w-full px-2 sm:px-0 order-1 lg:order-2">
               {/* Logo above headline */}
               <div className="flex items-center gap-3 justify-center lg:justify-start mb-7">
                 <img src="/icon.png" alt="AxoScribe" className="w-12 h-12 rounded-2xl" />
