@@ -1,6 +1,33 @@
+import { useEffect } from 'react';
 import { ChevronLeft } from 'lucide-react';
 
 export default function PrivacyPage() {
+  useEffect(() => {
+    document.title = 'Privacy Policy — AxoScribe';
+    const setMeta = (name: string, content: string, prop = false) => {
+      const attr = prop ? 'property' : 'name';
+      let el = document.querySelector(`meta[${attr}="${name}"]`);
+      if (!el) {
+        el = document.createElement('meta');
+        el.setAttribute(attr, name);
+        document.head.appendChild(el);
+      }
+      el.setAttribute('content', content);
+    };
+    setMeta('description', 'AxoScribe Privacy Policy — all transcription is 100% on-device. No data ever leaves your phone.');
+    setMeta('og:title', 'Privacy Policy — AxoScribe', true);
+    setMeta('og:description', 'AxoScribe never collects, stores, or transmits your audio or transcriptions.', true);
+    setMeta('og:url', 'https://axoscribe.netlify.app/privacy', true);
+    setMeta('twitter:title', 'Privacy Policy — AxoScribe');
+    setMeta('twitter:description', 'AxoScribe never collects, stores, or transmits your audio or transcriptions.');
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) canonical.setAttribute('href', 'https://axoscribe.netlify.app/privacy');
+    return () => {
+      document.title = 'AxoScribe — Offline Voice-to-Text with Whisper AI';
+      if (canonical) canonical.setAttribute('href', 'https://axoscribe.netlify.app/');
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-neutral-950 text-white">
       <div className="max-w-3xl mx-auto px-6 py-16">

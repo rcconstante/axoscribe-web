@@ -1,6 +1,33 @@
+import { useEffect } from 'react';
 import { ChevronLeft } from 'lucide-react';
 
 export default function TermsPage() {
+  useEffect(() => {
+    document.title = 'Terms of Service — AxoScribe';
+    const setMeta = (name: string, content: string, prop = false) => {
+      const attr = prop ? 'property' : 'name';
+      let el = document.querySelector(`meta[${attr}="${name}"]`);
+      if (!el) {
+        el = document.createElement('meta');
+        el.setAttribute(attr, name);
+        document.head.appendChild(el);
+      }
+      el.setAttribute('content', content);
+    };
+    setMeta('description', 'AxoScribe Terms of Service — read our terms for using the offline voice-to-text Android app.');
+    setMeta('og:title', 'Terms of Service — AxoScribe', true);
+    setMeta('og:description', 'Read the AxoScribe Terms of Service for the offline voice-to-text app.', true);
+    setMeta('og:url', 'https://axoscribe.netlify.app/terms', true);
+    setMeta('twitter:title', 'Terms of Service — AxoScribe');
+    setMeta('twitter:description', 'Read the AxoScribe Terms of Service for the offline voice-to-text app.');
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) canonical.setAttribute('href', 'https://axoscribe.netlify.app/terms');
+    return () => {
+      document.title = 'AxoScribe — Offline Voice-to-Text with Whisper AI';
+      if (canonical) canonical.setAttribute('href', 'https://axoscribe.netlify.app/');
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-neutral-950 text-white">
       <div className="max-w-3xl mx-auto px-6 py-16">
