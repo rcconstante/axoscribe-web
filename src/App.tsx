@@ -1,4 +1,4 @@
-import { Mic, Shield, Cpu, Download, WifiOff, Star, ChevronRight } from 'lucide-react';
+import { Mic, Shield, Cpu, Download, WifiOff, Star, ChevronRight, CheckCircle, Tag } from 'lucide-react';
 import PrivacyPage from './pages/Privacy';
 import TermsPage from './pages/Terms';
 
@@ -285,6 +285,106 @@ function App() {
         </div>
       </section>
 
+      {/* ─── Pricing ─── */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-8 py-28 lg:py-40">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur px-5 py-2 rounded-full text-sm font-medium mb-6">
+            <Tag size={16} />
+            Simple, honest pricing
+          </div>
+          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6">
+            One price. Forever yours.
+          </h2>
+          <p className="text-neutral-400 text-lg sm:text-xl max-w-lg mx-auto">
+            No subscription. No ads. No cloud fees. Pay once and own it.
+          </p>
+        </div>
+
+        {/* Price card */}
+        <div className="max-w-lg mx-auto mb-16">
+          <div className="relative bg-white text-black rounded-3xl p-10 sm:p-12 text-center overflow-hidden">
+            <div className="absolute -right-10 -top-10 w-48 h-48 bg-black/[0.04] rounded-full" />
+            <div className="absolute -left-10 -bottom-10 w-64 h-64 bg-black/[0.03] rounded-full" />
+            <div className="relative z-10">
+              <p className="text-sm font-semibold text-neutral-500 uppercase tracking-widest mb-4">One-Time Purchase</p>
+              <div className="flex items-start justify-center gap-1 mb-2">
+                <span className="text-2xl font-bold mt-3 text-neutral-600">₱</span>
+                <span className="text-8xl sm:text-9xl font-black tracking-tight leading-none">69</span>
+              </div>
+              <p className="text-neutral-500 text-base mb-8">Philippine Peso · one-time</p>
+              <div className="space-y-3 text-left mb-8">
+                {[
+                  'Unlimited transcriptions, forever',
+                  'All 3 Whisper AI model sizes',
+                  '20+ languages supported',
+                  '100% offline — no internet needed',
+                  'All future updates included',
+                  'No ads, no tracking, no subscription',
+                ].map((feat) => (
+                  <div key={feat} className="flex items-center gap-3">
+                    <CheckCircle size={18} className="text-black flex-shrink-0" />
+                    <span className="text-sm font-medium text-neutral-700">{feat}</span>
+                  </div>
+                ))}
+              </div>
+              <a
+                href="#download"
+                className="w-full inline-flex items-center justify-center gap-2 bg-black text-white px-8 py-4 rounded-2xl font-semibold text-base hover:bg-neutral-800 transition-colors"
+              >
+                Get AxoScribe <ChevronRight size={20} />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Currency equivalents */}
+        <div className="max-w-4xl mx-auto">
+          <p className="text-center text-neutral-500 text-sm mb-8">
+            Approximate price in your currency <span className="text-neutral-600">(Google Play auto-converts at checkout)</span>
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+            {[
+              { flag: '🇵🇭', currency: 'PHP', symbol: '₱', amount: '69', name: 'Philippine Peso' },
+              { flag: '🇺🇸', currency: 'USD', symbol: '$', amount: '1.22', name: 'US Dollar' },
+              { flag: '🇪🇺', currency: 'EUR', symbol: '€', amount: '1.13', name: 'Euro' },
+              { flag: '🇬🇧', currency: 'GBP', symbol: '£', amount: '0.96', name: 'British Pound' },
+              { flag: '🇯🇵', currency: 'JPY', symbol: '¥', amount: '182', name: 'Japanese Yen' },
+              { flag: '🇦🇺', currency: 'AUD', symbol: 'A$', amount: '1.88', name: 'Australian Dollar' },
+              { flag: '🇨🇦', currency: 'CAD', symbol: 'C$', amount: '1.67', name: 'Canadian Dollar' },
+              { flag: '🇸🇬', currency: 'SGD', symbol: 'S$', amount: '1.64', name: 'Singapore Dollar' },
+              { flag: '🇮🇳', currency: 'INR', symbol: '₹', amount: '101', name: 'Indian Rupee' },
+              { flag: '🇰🇷', currency: 'KRW', symbol: '₩', amount: '1,670', name: 'South Korean Won' },
+              { flag: '🇲🇾', currency: 'MYR', symbol: 'RM', amount: '5.40', name: 'Malaysian Ringgit' },
+              { flag: '🇭🇰', currency: 'HKD', symbol: 'HK$', amount: '9.42', name: 'Hong Kong Dollar' },
+              { flag: '🇹🇼', currency: 'TWD', symbol: 'NT$', amount: '39', name: 'New Taiwan Dollar' },
+              { flag: '🇹🇭', currency: 'THB', symbol: '฿', amount: '42', name: 'Thai Baht' },
+              { flag: '🇮🇩', currency: 'IDR', symbol: 'Rp', amount: '19,900', name: 'Indonesian Rupiah' },
+              { flag: '🇻🇳', currency: 'VND', symbol: '₫', amount: '30,800', name: 'Vietnamese Dong' },
+              { flag: '🇧🇷', currency: 'BRL', symbol: 'R$', amount: '6.90', name: 'Brazilian Real' },
+              { flag: '🇲🇽', currency: 'MXN', symbol: 'MX$', amount: '21', name: 'Mexican Peso' },
+              { flag: '🇦🇪', currency: 'AED', symbol: 'د.إ', amount: '4.44', name: 'UAE Dirham' },
+              { flag: '🇸🇦', currency: 'SAR', symbol: 'SR', amount: '4.56', name: 'Saudi Riyal' },
+            ].map((c) => (
+              <div
+                key={c.currency}
+                className={`bg-neutral-900 border rounded-2xl px-4 py-3 flex items-center gap-3 ${c.currency === 'PHP' ? 'border-white/30 bg-white/5' : 'border-neutral-800'}`}
+              >
+                <span className="text-2xl leading-none">{c.flag}</span>
+                <div className="min-w-0">
+                  <p className="text-xs text-neutral-500 font-medium">{c.currency}</p>
+                  <p className="text-sm font-bold text-white truncate">
+                    {c.symbol}{c.amount}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-neutral-600 text-xs mt-6">
+            * Rates are approximate. Google Play sets the final local price. Updated April 2026.
+          </p>
+        </div>
+      </section>
+
       {/* ─── CTA Banner ─── */}
       <section className="max-w-7xl mx-auto px-4 sm:px-8 pb-28 lg:pb-40">
         <div className="relative bg-white rounded-3xl p-10 sm:p-16 lg:p-20 flex flex-col sm:flex-row items-center gap-10 overflow-hidden">
@@ -296,7 +396,7 @@ function App() {
               Ready to transcribe?
             </h2>
             <p className="text-neutral-500 text-lg max-w-lg">
-              Get AxoScribe — a one-time purchase, no subscription ever. No account needed, no data collection. Just you and your voice.
+              Get AxoScribe for just <strong>₱69</strong> — a one-time purchase, no subscription ever. No account needed, no data collection. Just you and your voice.
             </p>
           </div>
           <a
