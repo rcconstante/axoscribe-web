@@ -1,14 +1,67 @@
-import { Mic, Shield, Cpu, Download, WifiOff, Star, ChevronRight, CheckCircle, Tag } from 'lucide-react';
+import { useState } from 'react';
+import { Mic, Shield, Cpu, Download, WifiOff, Star, ChevronRight, CheckCircle, Tag, X } from 'lucide-react';
 import PrivacyPage from './pages/Privacy';
 import TermsPage from './pages/Terms';
 
+function ComingSoonModal({ onClose }: { onClose: () => void }) {
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <div
+        className="relative bg-neutral-900 border border-neutral-700 rounded-3xl p-10 max-w-sm w-full text-center shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-neutral-500 hover:text-white transition-colors"
+          aria-label="Close"
+        >
+          <X size={20} />
+        </button>
+        <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+          <svg viewBox="0 0 24 24" className="w-9 h-9" fill="white">
+            <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 21.99 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 21.99C7.79 22.03 6.8 20.68 5.96 19.47C4.25 16.56 2.93 11.3 4.7 7.72C5.57 5.94 7.36 4.82 9.3 4.8C10.6 4.78 11.83 5.64 12.62 5.64C13.41 5.64 14.92 4.59 16.48 4.76C17.14 4.79 18.93 5.03 20.1 6.7C19.98 6.78 17.75 8.08 17.77 10.82C17.8 14.1 20.58 15.17 20.61 15.18C20.58 15.27 20.1 16.88 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/>
+          </svg>
+        </div>
+        <h2 className="text-2xl font-bold mb-3">iOS Coming Soon</h2>
+        <p className="text-neutral-400 text-base leading-relaxed">
+          AxoScribe for iPhone and iPad is currently in development.
+          <br /><br />
+          In the meantime, try it on Android — fully offline, zero cloud.
+        </p>
+        <a
+          href="https://play.google.com/apps/testing/com.axoscribe.app/join?hl=en-US"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-8 w-full inline-flex items-center justify-center gap-3 bg-white text-black px-6 py-3.5 rounded-2xl font-semibold text-sm hover:bg-neutral-200 transition-colors"
+        >
+          <svg viewBox="0 0 24 24" className="w-5 h-5 flex-shrink-0" fill="currentColor">
+            <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.4l2.583 1.496c.572.331.572.87 0 1.2l-2.583 1.497-2.606-2.597 2.606-2.596zM5.864 3.465L16.8 9.798l-2.302 2.302-8.634-8.635z"/>
+          </svg>
+          Get it on Google Play
+        </a>
+        <button
+          onClick={onClose}
+          className="mt-3 w-full text-neutral-500 text-sm py-2 hover:text-neutral-300 transition-colors"
+        >
+          Maybe later
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function App() {
+  const [showIOSModal, setShowIOSModal] = useState(false);
   const path = window.location.pathname;
   if (path === '/privacy') return <PrivacyPage />;
   if (path === '/terms') return <TermsPage />;
 
   return (
     <div className="min-h-screen bg-neutral-950 text-white">
+      {showIOSModal && <ComingSoonModal onClose={() => setShowIOSModal(false)} />}
       {/* ─── Hero ─── */}
       <section className="relative overflow-hidden">
         {/* subtle radial glow */}
@@ -53,8 +106,8 @@ function App() {
 
               {/* Store buttons */}
               <div id="download" className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
-                <a
-                  href="#"
+                <button
+                  onClick={() => setShowIOSModal(true)}
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-4 bg-white text-black px-8 py-4 rounded-2xl font-semibold text-base hover:bg-neutral-200 transition-colors"
                 >
                   <svg viewBox="0 0 24 24" className="w-8 h-8 flex-shrink-0" fill="currentColor">
@@ -64,9 +117,11 @@ function App() {
                     <div className="text-xs leading-none opacity-70">Download on the</div>
                     <div className="text-base leading-tight font-bold">App Store</div>
                   </div>
-                </a>
+                </button>
                 <a
-                  href="#"
+                  href="https://play.google.com/apps/testing/com.axoscribe.app/join?hl=en-US"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-4 bg-white/10 border border-white/20 text-white px-8 py-4 rounded-2xl font-semibold text-base hover:bg-white/20 transition-colors"
                 >
                   <svg viewBox="0 0 24 24" className="w-8 h-8 flex-shrink-0" fill="currentColor">
